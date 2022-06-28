@@ -1,1 +1,4 @@
-export default NewCardForm;
+import React from "react";
+import PropTypes from "prop-types";
+
+// export default NewCardForm;
