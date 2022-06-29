@@ -9,19 +9,22 @@ import axios from "axios";
 import { useState } from "react";
 
 function App() {
-  const boardData = {
-    boardID: 1,
-    title: "hi",
-    owner: "Amel",
-  };
+  const [boardsData, setBoardsData] = useState([
+    {
+      boardID: 1,
+      title: "get out of my swamp",
+      owner: "Shrek",
+      isSelected: false
+    }
+  ]);
 
-  const [boards, setBoards] = useState([]);
+  const [isBoardFormVisible, setBoardFormVisibility] = useState(true)
 
   const getBoardsFromAPI = () => {
     axios
       .get("")
       .then((response) => {
-        setBoards(response.data);
+        setBoardsData(response.data);
       })
       .catch((error) => {
         console.log("ahhhhhhhh error");
@@ -50,14 +53,20 @@ function App() {
       });
   };
 
+  const updateBoardData = updatedBoard => {
+    // TO COMPLETE
+  }
+
   return (
     <div className="App">
-      <Board
-        boardID={boardData.boardID}
-        title={boardData.title}
-        owner={boardData.owner}
-      ></Board>
-      <NewBoardForm handleSubmission={makeNewBoard}></NewBoardForm>
+      <BoardList
+      boardsData={boardsData}
+      onUpdateBoard={updateBoardData}
+      ></BoardList>
+      <NewBoardForm 
+      createNewBoard={makeNewBoard}
+      isBoardFormVisible={isBoardFormVisible}
+      ></NewBoardForm>
       <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>
     </div>
   );

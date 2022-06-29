@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const defaultBoard = {owner_id: 0, title: '', owner: ''}
+const defaultBoard = {boardID: 0, title: '', owner: '', isSelected: false}
 
 const NewBoardForm = (props) => {
   const [data, setData] = useState(defaultBoard);
@@ -21,7 +21,7 @@ const NewBoardForm = (props) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    props.handleSubmission(data);
+    props.createNewBoard(data);
   }
 
   return(
@@ -33,7 +33,8 @@ const NewBoardForm = (props) => {
   }
 
 NewBoardForm.propTypes = {
-  handleSubmission: PropTypes.func.isRequired
+  createNewBoard: PropTypes.func.isRequired,
+  isBoardFormVisible: PropTypes.bool.isRequired
 };
 
 
