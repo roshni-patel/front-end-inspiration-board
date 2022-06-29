@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const defaultBoard = {boardID: 0, title: '', owner: '', isSelected: false}
+const defaultBoard = { boardID: 0, title: "", owner: "", isSelected: false };
 
 const NewBoardForm = (props) => {
   const [data, setData] = useState(defaultBoard);
@@ -10,32 +10,45 @@ const NewBoardForm = (props) => {
   const onOwnerChange = (event) => {
     setData({
       ...data,
-      owner: event.target.value
-    })};
+      owner: event.target.value,
+    });
+  };
 
   const onTitleChange = (event) => {
     setData({
       ...data,
-      title: event.target.value
-    })};
+      title: event.target.value,
+    });
+  };
 
   const submitForm = (event) => {
     event.preventDefault();
     props.createNewBoard(data);
-  }
+  };
 
-  return(
+  return (
     <form onSubmit={submitForm}>
-      <label>Owner</label><input name="owner" type="text" value={data.owner} onChange={onOwnerChange}></input>
-      <label>Title</label><input name="title" type="text" value={data.title} onChange={onTitleChange}></input>
+      <label>Owner</label>
+      <input
+        name="owner"
+        type="text"
+        value={data.owner}
+        onChange={onOwnerChange}
+      ></input>
+      <label>Title</label>
+      <input
+        name="title"
+        type="text"
+        value={data.title}
+        onChange={onTitleChange}
+      ></input>
     </form>
-  )
-  }
+  );
+};
 
 NewBoardForm.propTypes = {
   createNewBoard: PropTypes.func.isRequired,
-  isBoardFormVisible: PropTypes.bool.isRequired
+  isBoardFormVisible: PropTypes.bool.isRequired,
 };
-
 
 export default NewBoardForm;

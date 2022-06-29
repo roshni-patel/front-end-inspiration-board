@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import Card from "./Card.js";
 import CardList from "./CardList.js";
 
 //From the requirements, we can infer that each Board has a title,
@@ -14,6 +15,11 @@ const Board = (props) => {
   return (
     <div className="board">
       <h1 className="board-title">{title}</h1>
+      <CardList
+        boardID={boardID}
+        cards={[{ message: "hiii", card_id: 1, likes_count: 0 }]}
+        // onUpdateLike={}
+      ></CardList>
     </div>
   );
 };
@@ -22,7 +28,7 @@ Board.propTypes = {
   boardID: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool.isRequired
+  isSelected: PropTypes.bool.isRequired,
 };
 
 export default Board;

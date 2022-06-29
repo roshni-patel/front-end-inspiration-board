@@ -5,6 +5,7 @@ const Card = (props) => {
   const card_id = props.card_id;
   const message = props.message;
   const likes_count = props.likes_count;
+  //define addLike function
 
   return (
     <div className="card">
@@ -29,7 +30,7 @@ Card.propTypes = {
   card_id: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
   likes_count: PropTypes.number.isRequired,
-  addLike: PropTypes.func.isRequired,
+  onUpdateLike: PropTypes.func,
 };
 
 export default Card;
