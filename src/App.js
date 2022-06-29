@@ -9,8 +9,8 @@ import axios from "axios";
 import { useState } from "react";
 
 function App() {
-  const data = {
-    owner_id: 1,
+  const boardData = {
+    boardID: 1,
     title: "hi",
     owner: "Amel",
   };
@@ -53,9 +53,9 @@ function App() {
   return (
     <div className="App">
       <Board
-        owner_id={data.owner_id}
-        title={data.title}
-        owner={data.owner}
+        boardID={boardData.boardID}
+        title={boardData.title}
+        owner={boardData.owner}
       ></Board>
       <NewBoardForm handleSubmission={makeNewBoard}></NewBoardForm>
       <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>

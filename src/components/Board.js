@@ -6,7 +6,7 @@ import CardList from "./CardList.js";
 //owner name, and board_id (as the hidden, implied primary key).
 
 const Board = (props) => {
-  const board_id = props.board_id;
+  const boardID = props.boardID;
   const title = props.title;
   const owner = props.owner;
 
@@ -18,7 +18,7 @@ const Board = (props) => {
 };
 
 Board.propTypes = {
-  board_id: PropTypes.number.isRequired,
+  boardID: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
 };
