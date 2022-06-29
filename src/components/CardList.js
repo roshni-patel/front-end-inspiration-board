@@ -21,6 +21,7 @@ const CardList = (props) => {
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   addLike: PropTypes.func.isRequired,
+  boardID: PropTypes.number.isRequired,
 };
 
 export default CardList;
