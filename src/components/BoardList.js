@@ -6,7 +6,10 @@ import { useState } from "react";
 const BoardList = (props) => {
   // const [seclectedBoard, setSelectedBoard] = useState(null)
   //every board list item should be a button, when its clicked set state^
+  // const boardsData = props.getBoardsFromAPI();
+  
 
+  
   const boardComponents = props.boardsData.map((board) => {
     return (
       <li key={board.boardID}>
@@ -16,6 +19,7 @@ const BoardList = (props) => {
           owner={board.owner}
           isSelected={board.isSelected}
           onUpdateBoard={props.onUpdateBoard}
+          getBoardsFromAPI = {props.getBoardsFromAPI}
         ></Board>
         <button
           className="select-board"
@@ -25,7 +29,9 @@ const BoardList = (props) => {
         </button>
       </li>
     );
+    
   });
+  
 
   return (
     <section className="board-list">
@@ -45,6 +51,7 @@ BoardList.propTypes = {
     })
   ),
   onUpdateBoard: PropTypes.func.isRequired,
+  getBoardsFromAPI: PropTypes.func.isRequired
 };
 
 export default BoardList;

@@ -12,6 +12,7 @@ const Board = (props) => {
   const owner = props.owner;
   const isSelected = props.isSelected;
 
+
   return (
     <div className="board">
       <h1 className="board-title">{title}</h1>

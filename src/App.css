@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,70 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+* {
+  font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif; 
 }
+
+/* .App {  
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 0.7fr 4fr 0.3fr;
+  gap: 20px 26px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header header"
+    "boards card-box"
+    "footer footer";
+}
+
+.card-box { 
+  grid-area: card-box; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.header { 
+  grid-area: header; 
+}
+
+.boards {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.3fr 0.3fr 0.3fr 1fr 3.6fr;
+  gap: 8px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "selected-board-label"
+    "selected-board"
+    "board-list-label"
+    "board-list"
+    "board-forms";
+  justify-items: start;
+  grid-area: boards;
+}
+
+.selected-board { 
+  grid-area: selected-board; 
+}
+
+.board-list { 
+  grid-area: board-list; 
+}
+
+.selected-board-label { 
+  grid-area: selected-board-label; 
+}
+
+.board-list-label { 
+  grid-area: board-list-label; 
+}
+
+.board-forms { 
+  grid-area: board-forms; 
+}
+
+.footer { 
+  grid-area: footer; 
+} */

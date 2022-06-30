@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Board from "./components/Board";
 import BoardList from "./components/BoardList";
@@ -6,25 +5,42 @@ import CardList from "./components/CardList";
 import NewBoardForm from "./components/NewBoardForm";
 import NewCardForm from "./components/NewCardForm";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [boardsData, setBoardsData] = useState([
-    {
-      boardID: 1,
-      title: "get out of my swamp",
-      owner: "Shrek",
-      isSelected: false
-    }
-  ]);
+  const [boardsData, setBoardsData] = useState([])
+  // useState([
+  //   {
+  //     boardID: 1,
+  //     title: "get out of my swamp",
+  //     owner: "Shrek",
+  //     isSelected: false
+  //   }
+  // ]);
+  useEffect(() => {
+    getBoardsFromAPI();
+  }, []) 
+
 
   const [isBoardFormVisible, setBoardFormVisibility] = useState(true)
 
   const getBoardsFromAPI = () => {
     axios
-      .get("")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
-        setBoardsData(response.data);
+        console.log(response.data)
+
+        const boardsFromAPI = response.data.map(board => {
+          return (
+          { boardID:board.id,
+            title:board.title,
+            owner:board.owner,
+            isSelected:false
+           }
+          );
+
+        })
+        setBoardsData(boardsFromAPI);
       })
       .catch((error) => {
         console.log("ahhhhhhhh error");
@@ -33,7 +49,7 @@ function App() {
 
   const makeNewBoard = (data) => {
     axios
-      .post("", data)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
       .then((response) => {
         getBoardsFromAPI();
       })
@@ -44,7 +60,7 @@ function App() {
 
   const makeNewCard = (cardData) => {
     axios
-      .post("", cardData) // board = owner_id of selectedBoard
+      .post(`${process.env.REACT_APP_BACKEND_URL}/cards`, cardData) // board = owner_id of selectedBoard
       .then((response) => {
         // getCardsFromAPI();
       })
@@ -59,15 +75,16 @@ function App() {
 
   return (
     <div className="App">
-      <BoardList
+      <BoardList className="board-list"
       boardsData={boardsData}
+      getBoardsFromAPI={getBoardsFromAPI}
       onUpdateBoard={updateBoardData}
       ></BoardList>
-      <NewBoardForm 
+      <NewBoardForm className="board-forms"
       createNewBoard={makeNewBoard}
       isBoardFormVisible={isBoardFormVisible}
       ></NewBoardForm>
-      <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>
+      <NewCardForm className="board-forms" handleCardSubmission={makeNewCard}></NewCardForm>
     </div>
   );
 }

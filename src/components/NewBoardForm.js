@@ -42,6 +42,12 @@ const NewBoardForm = (props) => {
         value={data.title}
         onChange={onTitleChange}
       ></input>
+      <button
+          className="create-board"
+          // onClick={() => ()}
+        >
+          Submit
+      </button>
     </form>
   );
 };
