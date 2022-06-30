@@ -41,10 +41,10 @@
   font-family: Optima,Segoe,Segoe UI,Candara,Calibri,Arial,sans-serif; 
 }
 
-/* .App {  
+.App {  
   display: grid;
   grid-template-columns: 2fr 3fr;
-  grid-template-rows: 0.7fr 4fr 0.3fr;
+  grid-template-rows: 0.3fr 4fr 0.3fr;
   gap: 20px 26px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -61,22 +61,21 @@
 }
 
 .header { 
-  grid-area: header; 
+  grid-area: header;
+  justify-self: center; 
 }
 
-.boards {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 0.3fr 0.3fr 1fr 3.6fr;
-  gap: 8px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "selected-board-label"
+.boards {
+  display: grid; 
+  grid-template-columns: 1fr; 
+  grid-template-rows: 0.4fr 0.8fr 3.7fr; 
+  gap: 8px 0px; 
+  grid-template-areas: 
     "selected-board"
-    "board-list-label"
     "board-list"
-    "board-forms";
-  justify-items: start;
-  grid-area: boards;
+    "board-forms"; 
+  justify-items: stretch; 
+  grid-area: boards; 
 }
 
 .selected-board { 
@@ -85,20 +84,16 @@
 
 .board-list { 
   grid-area: board-list; 
-}
-
-.selected-board-label { 
-  grid-area: selected-board-label; 
-}
-
-.board-list-label { 
-  grid-area: board-list-label; 
+  height: 10em;
+  overflow-y: scroll;
+  border: 2px black solid;
 }
 
 .board-forms { 
   grid-area: board-forms; 
+  align-self: stretch;
 }
 
 .footer { 
   grid-area: footer; 
-} */
+}

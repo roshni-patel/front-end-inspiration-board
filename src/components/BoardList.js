@@ -8,6 +8,15 @@ const BoardList = (props) => {
   //every board list item should be a button, when its clicked set state^
   // const boardsData = props.getBoardsFromAPI();
   
+  const onBoardTitleSelect = (id) => {
+    // const updatedBoard = {
+    //     boardID: board.boardID,
+    //     owner: board.owner,
+    //     title: board.title,
+    //     isSelected: !board.isSelected
+    // }
+    props.onUpdateBoard(id);
+  };
 
   
   const boardComponents = props.boardsData.map((board) => {
@@ -23,9 +32,12 @@ const BoardList = (props) => {
         ></Board>
         <button
           className="select-board"
-          onClick={() => (props.isSelected = true)}
+          // onClick={() => (board.isSelected = !board.isSelected)}
+          // onClick={() => onBoardTitleSelect(board)}
+          onClick={() => onBoardTitleSelect(board.boardID)}
         >
-          title
+          {board.title}
+          {/* {console.log(board.isSelected)} */}
         </button>
       </li>
     );
@@ -34,9 +46,9 @@ const BoardList = (props) => {
   
 
   return (
-    <section className="board-list">
-      <h2>Boards</h2>
-      <ul>{boardComponents}</ul>
+    <section>
+      <h2 className="board-list-label">Boards</h2>
+      <ul className="board-list">{boardComponents}</ul>
     </section>
   );
 };

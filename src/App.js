@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [boardsData, setBoardsData] = useState([])
+  const [selectedBoard, setSelectedBoard] = useState(0)
   // useState([
   //   {
   //     boardID: 1,
@@ -20,6 +21,26 @@ function App() {
   useEffect(() => {
     getBoardsFromAPI();
   }, []) 
+
+  useEffect(() => {
+    setSelectedBoard(selectedBoard);
+  }, [selectedBoard])
+
+  // const updateBoardsData = updatedBoard => {
+  //   const boards = boardsData.map(board => {
+  //     if (board.boardID === updatedBoard.boardID) {
+        
+  //       return updatedBoard;
+  //     } else {
+  //       return board;
+  //     }
+  //   });
+
+  //   setBoardsData(boards);
+  // }
+  const updateBoardsData = (id) =>{
+    setSelectedBoard(id);
+  }
 
 
   const [isBoardFormVisible, setBoardFormVisibility] = useState(true)
@@ -69,24 +90,36 @@ function App() {
       });
   };
 
-  const updateBoardData = updatedBoard => {
-    // TO COMPLETE
-  }
+
 
   return (
     <div className="App">
-      <BoardList className="board-list"
-      boardsData={boardsData}
-      getBoardsFromAPI={getBoardsFromAPI}
-      onUpdateBoard={updateBoardData}
-      ></BoardList>
-      <NewBoardForm className="board-forms"
-      createNewBoard={makeNewBoard}
-      isBoardFormVisible={isBoardFormVisible}
-      ></NewBoardForm>
-      <NewCardForm className="board-forms" handleCardSubmission={makeNewCard}></NewCardForm>
+      <section className="header">
+        <h1>Inspiration Board</h1>
+      </section>
+      <section className="boards">
+        <BoardList
+        boardsData={boardsData}
+        getBoardsFromAPI={getBoardsFromAPI}
+        onUpdateBoard={updateBoardsData}
+        ></BoardList>
+        <section className="board-forms">
+          <h1>Create A Board</h1>
+          <NewBoardForm
+          createNewBoard={makeNewBoard}
+          isBoardFormVisible={isBoardFormVisible}
+          ></NewBoardForm>
+          <NewCardForm 
+          handleCardSubmission={makeNewCard}>
+          </NewCardForm>
+        </section>
+      </section>
+      <section className="card-box">
+        <h1>Card Box Placeholder</h1>
+      </section>
+      <div className="footer"></div>
     </div>
   );
-}
+};
 
 export default App;

@@ -15,7 +15,7 @@ const CardList = (props) => {
     );
   }
 
-  return <div className="card-list">{cardComponents}</div>;
+  return <div className="card-box">{cardComponents}</div>;
 };
 
 CardList.propTypes = {
