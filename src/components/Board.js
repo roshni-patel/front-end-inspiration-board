@@ -10,7 +10,7 @@ const Board = (props) => {
   const boardID = props.boardID;
   const title = props.title;
   const owner = props.owner;
-  const isSelected = props.isSelected;
+  // const isSelected = props.isSelected;
 
 
   return (
@@ -29,7 +29,7 @@ Board.propTypes = {
   boardID: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  // isSelected: PropTypes.bool.isRequired,
 };
 
 export default Board;

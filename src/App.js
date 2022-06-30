@@ -56,8 +56,8 @@ function App() {
           { boardID:board.id,
             title:board.title,
             owner:board.owner,
-            isSelected:false
-           }
+            // isSelected:false
+          }
           );
 
         })
@@ -98,6 +98,9 @@ function App() {
         <h1>Inspiration Board</h1>
       </section>
       <section className="boards">
+        <section className="selected-board">
+          <h1>Selected Board Placeholder</h1>
+        </section>
         <BoardList
         boardsData={boardsData}
         getBoardsFromAPI={getBoardsFromAPI}
