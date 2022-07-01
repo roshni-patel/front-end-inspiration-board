@@ -12,15 +12,14 @@ const Board = (props) => {
   const owner = props.owner;
   // const isSelected = props.isSelected;
 
-
   return (
     <div className="board">
       <h1 className="board-title">{title}</h1>
-      <CardList
+      {/* <CardList
         boardID={boardID}
-        cards={[{ message: "hiii", card_id: 1, likes_count: 0 }]}
+        // cards={props}
         // onUpdateLike={}
-      ></CardList>
+      ></CardList> */}
     </div>
   );
 };

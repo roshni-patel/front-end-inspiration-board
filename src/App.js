@@ -8,44 +8,38 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [boardsData, setBoardsData] = useState([])
-  const [cardsData, setCardsData] = useState([])
-  const [selectedBoard, setSelectedBoard] = useState(null)
+  const [boardsData, setBoardsData] = useState([]);
+  const [cardsData, setCardsData] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState(null);
 
   useEffect(() => {
     getBoardsFromAPI();
-  }, []) 
-
+  }, []);
 
   // useEffect(() => {
   //   setSelectedBoard(selectedBoard);
   //   console.log(selectedBoard)
   // }, [selectedBoard])
 
-
-  const onUpdateSelectedBoard = (id) =>{
+  const onUpdateSelectedBoard = (id) => {
     setSelectedBoard(id);
     getCardsFromBoard(id);
-  }
+  };
 
-
-  const [isBoardFormVisible, setBoardFormVisibility] = useState(true)
+  const [isBoardFormVisible, setBoardFormVisibility] = useState(true);
 
   const getBoardsFromAPI = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
-
-        const boardsFromAPI = response.data.map(board => {
-          return (
-          { boardID:board.id,
-            title:board.title,
-            owner:board.owner,
+        const boardsFromAPI = response.data.map((board) => {
+          return {
+            boardID: board.id,
+            title: board.title,
+            owner: board.owner,
             // isSelected:false
-          }
-          );
-
-        })
+          };
+        });
         setBoardsData(boardsFromAPI);
       })
       .catch((error) => {
@@ -77,18 +71,18 @@ function App() {
 
   const getCardsFromBoard = (id) => {
     axios
-    .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${id}/cards`)
-    .then((response) => {
-      console.log(response.data)
-      setCardsData(response.data)
-      console.log(cardsData);
-    })
-    .catch((error) => {
-      console.log("error getting cards from board")
-    });
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${id}/cards`)
+      .then((response) => {
+        console.log(response.data);
+        setCardsData(response.data);
+        console.log(cardsData);
+      })
+      .catch((error) => {
+        console.log("error getting cards from board");
+      });
   };
 
- // {boardSelect.id} ---> displays --> ? {boardSelect.title} "- " {boardSelect.owner} : ""
+  // {boardSelect.id} ---> displays --> ? {boardSelect.title} "- " {boardSelect.owner} : ""
 
   return (
     <div className="App">
@@ -110,18 +104,26 @@ function App() {
             createNewBoard={makeNewBoard}
             isBoardFormVisible={isBoardFormVisible}
           ></NewBoardForm>
-          <NewCardForm 
-            handleCardSubmission={makeNewCard}>
-          </NewCardForm>
+          {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
+          {selectedBoard && (
+            <section>
+              <h1>Create A Card</h1>
+              <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>
+            </section>
+          )}
         </section>
       </section>
       <section className="card-box">
         <h1>Card Box Placeholder</h1>
+        {/* DISPLAYS SELECTED BOARD CARDS: only executes if selectedBoard is true */}
+        {selectedBoard && (
+          <CardList boardID={selectedBoard} cards={cardsData}></CardList>
+        )}
         {/* <CardList></CardList> */}
       </section>
       <div className="footer"></div>
     </div>
   );
-};
+}
 
 export default App;

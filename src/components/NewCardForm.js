@@ -29,6 +29,12 @@ const NewCardForm = (props) => {
         value={cardData.message}
         onChange={onMessageChange}
       ></input>
+      <button
+        className="create-card"
+        // onClick={() => ()}
+      >
+        Submit
+      </button>
     </form>
   );
 };

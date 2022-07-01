@@ -3,23 +3,26 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 
 const CardList = (props) => {
-  const cardComponents = [];
-  for (const card of props.cards) {
-    cardComponents.push(
-      <Card>
-        card_id={card.card_id}
-        message={card.message}
-        likes_count={card.likes_count}
-        onUpdateLike={props.onUpdateCard}
-      </Card>
-    );
+  console.log("cardData: ", props.cards);
+  let cardComponents = [];
+  if (props.cards) {
+    cardComponents = props.cards.map((card) => {
+      return (
+        <Card
+          card_id={card.card_id}
+          message={card.message}
+          likes_count={card.likes_count}
+        />
+      );
+    });
   }
 
-  return <div className="card-box">{cardComponents}</div>;
+  // return <div className="card-box">{cardComponents}</div>;
+  return <div>{cardComponents}</div>;
 };
 
 CardList.propTypes = {
-  cards: PropTypes.array,
+  cards: PropTypes.array.isRequired,
   // cards: PropTypes.array.isRequired,
   // addLike: PropTypes.func.isRequired,
   boardID: PropTypes.number.isRequired,
