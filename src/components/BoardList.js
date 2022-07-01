@@ -15,7 +15,8 @@ const BoardList = (props) => {
     //     title: board.title,
     //     isSelected: !board.isSelected
     // }
-    props.onUpdateBoard(id);
+    props.onUpdateSelectedBoard(id);
+    
   };
 
   
@@ -27,7 +28,7 @@ const BoardList = (props) => {
           title={board.title}
           owner={board.owner}
           isSelected={board.isSelected}
-          onUpdateBoard={props.onUpdateBoard}
+          onUpdateSelectedBoard={props.onUpdateSelectedBoard}
           getBoardsFromAPI = {props.getBoardsFromAPI}
         ></Board>
         <button
@@ -58,11 +59,10 @@ BoardList.propTypes = {
     PropTypes.shape({
       boardID: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired,
-      isSelected: PropTypes.bool.isRequired,
+      owner: PropTypes.string.isRequired
     })
   ),
-  onUpdateBoard: PropTypes.func.isRequired,
+  onUpdateSelectedBoard: PropTypes.func.isRequired,
   getBoardsFromAPI: PropTypes.func.isRequired
 };
 

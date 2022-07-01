@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [boardsData, setBoardsData] = useState([])
-  const [selectedBoard, setSelectedBoard] = useState(0)
+  const [selectedBoard, setSelectedBoard] = useState(null)
   // useState([
   //   {
   //     boardID: 1,
@@ -22,8 +22,13 @@ function App() {
     getBoardsFromAPI();
   }, []) 
 
+  // useEffect(() => {
+  //   selectedBoard = 0
+  // }, [])
+
   useEffect(() => {
     setSelectedBoard(selectedBoard);
+    console.log(selectedBoard)
   }, [selectedBoard])
 
   // const updateBoardsData = updatedBoard => {
@@ -38,8 +43,9 @@ function App() {
 
   //   setBoardsData(boards);
   // }
-  const updateBoardsData = (id) =>{
+  const onUpdateSelectedBoard = (id) =>{
     setSelectedBoard(id);
+    // console.log(selectedBoard);
   }
 
 
@@ -90,7 +96,7 @@ function App() {
       });
   };
 
-
+ // {boardSelect.id} ---> displays --> ? {boardSelect.title} "- " {boardSelect.owner} : ""
 
   return (
     <div className="App">
@@ -102,18 +108,18 @@ function App() {
           <h1>Selected Board Placeholder</h1>
         </section>
         <BoardList
-        boardsData={boardsData}
-        getBoardsFromAPI={getBoardsFromAPI}
-        onUpdateBoard={updateBoardsData}
+          boardsData={boardsData}
+          getBoardsFromAPI={getBoardsFromAPI}
+          onUpdateSelectedBoard={onUpdateSelectedBoard}
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>
           <NewBoardForm
-          createNewBoard={makeNewBoard}
-          isBoardFormVisible={isBoardFormVisible}
+            createNewBoard={makeNewBoard}
+            isBoardFormVisible={isBoardFormVisible}
           ></NewBoardForm>
           <NewCardForm 
-          handleCardSubmission={makeNewCard}>
+            handleCardSubmission={makeNewCard}>
           </NewCardForm>
         </section>
       </section>
