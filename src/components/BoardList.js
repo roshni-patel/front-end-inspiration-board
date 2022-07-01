@@ -4,17 +4,8 @@ import Board from "./Board";
 import { useState } from "react";
 
 const BoardList = (props) => {
-  // const [seclectedBoard, setSelectedBoard] = useState(null)
-  //every board list item should be a button, when its clicked set state^
-  // const boardsData = props.getBoardsFromAPI();
-  
+
   const onBoardTitleSelect = (id) => {
-    // const updatedBoard = {
-    //     boardID: board.boardID,
-    //     owner: board.owner,
-    //     title: board.title,
-    //     isSelected: !board.isSelected
-    // }
     props.onUpdateSelectedBoard(id);
     
   };

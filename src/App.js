@@ -9,43 +9,23 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [boardsData, setBoardsData] = useState([])
+  const [cardsData, setCardsData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState(null)
-  // useState([
-  //   {
-  //     boardID: 1,
-  //     title: "get out of my swamp",
-  //     owner: "Shrek",
-  //     isSelected: false
-  //   }
-  // ]);
+
   useEffect(() => {
     getBoardsFromAPI();
   }, []) 
 
+
   // useEffect(() => {
-  //   selectedBoard = 0
-  // }, [])
+  //   setSelectedBoard(selectedBoard);
+  //   console.log(selectedBoard)
+  // }, [selectedBoard])
 
-  useEffect(() => {
-    setSelectedBoard(selectedBoard);
-    console.log(selectedBoard)
-  }, [selectedBoard])
 
-  // const updateBoardsData = updatedBoard => {
-  //   const boards = boardsData.map(board => {
-  //     if (board.boardID === updatedBoard.boardID) {
-        
-  //       return updatedBoard;
-  //     } else {
-  //       return board;
-  //     }
-  //   });
-
-  //   setBoardsData(boards);
-  // }
   const onUpdateSelectedBoard = (id) =>{
     setSelectedBoard(id);
-    // console.log(selectedBoard);
+    getCardsFromBoard(id);
   }
 
 
@@ -55,7 +35,6 @@ function App() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/boards`)
       .then((response) => {
-        console.log(response.data)
 
         const boardsFromAPI = response.data.map(board => {
           return (
@@ -96,6 +75,19 @@ function App() {
       });
   };
 
+  const getCardsFromBoard = (id) => {
+    axios
+    .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${id}/cards`)
+    .then((response) => {
+      console.log(response.data)
+      setCardsData(response.data)
+      console.log(cardsData);
+    })
+    .catch((error) => {
+      console.log("error getting cards from board")
+    });
+  };
+
  // {boardSelect.id} ---> displays --> ? {boardSelect.title} "- " {boardSelect.owner} : ""
 
   return (
@@ -125,6 +117,7 @@ function App() {
       </section>
       <section className="card-box">
         <h1>Card Box Placeholder</h1>
+        {/* <CardList></CardList> */}
       </section>
       <div className="footer"></div>
     </div>
