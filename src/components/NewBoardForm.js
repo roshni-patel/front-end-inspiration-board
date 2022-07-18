@@ -33,9 +33,11 @@ const NewBoardForm = (props) => {
   const onVisibilityToggle = () => {
     setBoardFormVisibility(!isBoardFormVisible);
     console.log(`Board form visibility: ${isBoardFormVisible}`)
-  }
+  };
 
-  return (
+  if (isBoardFormVisible)
+  {
+    return (
     <form onSubmit={submitForm}>
       <label>Owner</label>
       <input
@@ -65,7 +67,20 @@ const NewBoardForm = (props) => {
         </button>
     </form>
   );
+}
+else {
+ return (
+  <button
+        className="toggle-board-visibility"
+        onClick={() => {onVisibilityToggle()}}
+        >
+          Show New Board Form
+        </button>
+ );
 };
+
+};
+  
 
 NewBoardForm.propTypes = {
   createNewBoard: PropTypes.func.isRequired
