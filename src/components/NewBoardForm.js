@@ -6,6 +6,10 @@ const defaultBoard = { boardID: 0, title: "", owner: "", isSelected: false };
 
 const NewBoardForm = (props) => {
   const [data, setData] = useState(defaultBoard);
+  const [isBoardFormVisible, setBoardFormVisibility] = useState(true);
+  // NEXT STEPS:
+  // make a button that when clicked sets isBoardFormVisible to false
+  // when isBoardFormVisible value changes, display or hide the new board form
 
   const onOwnerChange = (event) => {
     setData({
@@ -25,6 +29,11 @@ const NewBoardForm = (props) => {
     event.preventDefault();
     props.createNewBoard(data);
   };
+
+  const onVisibilityToggle = () => {
+    setBoardFormVisibility(!isBoardFormVisible);
+    console.log(`Board form visibility: ${isBoardFormVisible}`)
+  }
 
   return (
     <form onSubmit={submitForm}>
@@ -48,13 +57,19 @@ const NewBoardForm = (props) => {
         >
           Submit
       </button>
+      <button
+        className="toggle-board-visibility"
+        onClick={() => {onVisibilityToggle()}}
+        >
+          Hide New Board Form
+        </button>
     </form>
   );
 };
 
 NewBoardForm.propTypes = {
-  createNewBoard: PropTypes.func.isRequired,
-  isBoardFormVisible: PropTypes.bool.isRequired,
+  createNewBoard: PropTypes.func.isRequired
+  // isBoardFormVisible: PropTypes.bool.isRequired
 };
 
 export default NewBoardForm;
