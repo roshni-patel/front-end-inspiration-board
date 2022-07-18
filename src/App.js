@@ -77,14 +77,16 @@ function App() {
   };
 
   const makeNewCard = (cardData) => {
-    const boardID = cardData.boardID;
+    // const boardID = cardData.boardID;
+    const boardID = selectedBoard;
+
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}boards/${boardID}/cards`,
         cardData
       ) // board = owner_id of selectedBoard
       .then((response) => {
-        getCardsFromAPI();
+        getCardsFromAPI(boardID);
       })
       .catch((error) => {
         console.log("ahhhhhhhh error");
