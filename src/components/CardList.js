@@ -9,16 +9,17 @@ const CardList = (props) => {
     cardComponents = props.cards.map((card) => {
       return (
         <Card
-          card_id={card.card_id}
+          cardID={card.card_id}
+          boardID={card.board_id}
           message={card.message}
-          likes_count={card.likes_count}
+          likesCount={card.likes_count}
         />
       );
     });
   }
 
   // return <div className="card-box">{cardComponents}</div>;
-  return <div>{cardComponents}</div>;
+  return <div className="card-list">{cardComponents}</div>;
 };
 
 CardList.propTypes = {

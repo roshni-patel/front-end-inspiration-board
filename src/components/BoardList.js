@@ -4,13 +4,10 @@ import Board from "./Board";
 import { useState } from "react";
 
 const BoardList = (props) => {
-
   const onBoardTitleSelect = (id) => {
     props.onUpdateSelectedBoard(id);
-    
   };
 
-  
   const boardComponents = props.boardsData.map((board) => {
     return (
       <li key={board.boardID}>
@@ -20,7 +17,7 @@ const BoardList = (props) => {
           owner={board.owner}
           isSelected={board.isSelected}
           onUpdateSelectedBoard={props.onUpdateSelectedBoard}
-          getBoardsFromAPI = {props.getBoardsFromAPI}
+          getBoardsFromAPI={props.getBoardsFromAPI}
         ></Board>
         <button
           className="select-board"
@@ -33,9 +30,7 @@ const BoardList = (props) => {
         </button>
       </li>
     );
-    
   });
-  
 
   return (
     <section>
@@ -50,11 +45,11 @@ BoardList.propTypes = {
     PropTypes.shape({
       boardID: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired
+      owner: PropTypes.string.isRequired,
     })
   ),
   onUpdateSelectedBoard: PropTypes.func.isRequired,
-  getBoardsFromAPI: PropTypes.func.isRequired
+  getBoardsFromAPI: PropTypes.func.isRequired,
 };
 
 export default BoardList;

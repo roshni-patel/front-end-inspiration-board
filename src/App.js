@@ -58,11 +58,34 @@ function App() {
       });
   };
 
-  const makeNewCard = (cardData) => {
+  const getCardsFromAPI = (boardID) => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/cards`, cardData) // board = owner_id of selectedBoard
+      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardID}/cards`)
       .then((response) => {
-        // getCardsFromAPI();
+        const cardsFromAPI = response.data.map((card) => {
+          return {
+            cardID: card.card_id,
+            message: card.message,
+            likesCount: card.likes_count,
+            boardID: card.board_id,
+          };
+        });
+        setCardsData(cardsFromAPI);
+      })
+      .catch((error) => {
+        console.log("ahhhhhhhh error");
+      });
+  };
+
+  const makeNewCard = (cardData) => {
+    const boardID = cardData.boardID;
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}boards/${boardID}/cards`,
+        cardData
+      ) // board = owner_id of selectedBoard
+      .then((response) => {
+        getCardsFromAPI();
       })
       .catch((error) => {
         console.log("ahhhhhhhh error");
@@ -114,7 +137,7 @@ function App() {
         </section>
       </section>
       <section className="card-box">
-        <h1>Card Box Placeholder</h1>
+        <h1 className="card-box-header">Card Box Placeholder</h1>
         {/* DISPLAYS SELECTED BOARD CARDS: only executes if selectedBoard is true */}
         {selectedBoard && (
           <CardList boardID={selectedBoard} cards={cardsData}></CardList>

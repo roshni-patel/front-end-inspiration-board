@@ -5,6 +5,7 @@ import { useState } from "react";
 const defaultCard = { message: "" };
 
 const NewCardForm = (props) => {
+  const boardID = props.selectedBoard;
   const [cardData, setCardData] = useState(defaultCard);
 
   const onMessageChange = (event) => {
@@ -12,6 +13,7 @@ const NewCardForm = (props) => {
     setCardData({
       ...cardData,
       message: messageContent,
+      boardID: boardID,
     });
   };
 
@@ -29,18 +31,17 @@ const NewCardForm = (props) => {
         value={cardData.message}
         onChange={onMessageChange}
       ></input>
-      <button
-        className="create-card"
-        // onClick={() => ()}
-      >
+      <input type="submit" />
+      {/* <button className="create-card" onClick={() => submitForm()}>
         Submit
-      </button>
+      </button> */}
     </form>
   );
 };
 
 NewCardForm.propTypes = {
   handleCardSubmission: PropTypes.func.isRequired,
+  boardID: PropTypes.number.isRequired,
 };
 
 export default NewCardForm;
