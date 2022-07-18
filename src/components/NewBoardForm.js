@@ -51,14 +51,11 @@ const NewBoardForm = (props) => {
         value={data.title}
         onChange={onTitleChange}
       ></input>
-      {/* <button
+      <button
           className="create-board"
           // onClick={() => ()}
         >
           Submit
-<<<<<<< HEAD
-      </button> */}
-=======
       </button>
       <button
         className="toggle-board-visibility"
@@ -66,7 +63,6 @@ const NewBoardForm = (props) => {
         >
           Hide New Board Form
         </button>
->>>>>>> bcb165d4d43f1e0a6e5b6beabda155fc3e9351d3
     </form>
   );
 };
