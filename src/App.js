@@ -12,6 +12,8 @@ function App() {
   const [cardsData, setCardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [cardErrorMessage, setCardErrorMessage] = useState("");
+  const [boardErrorMessage, setBoardErrorMessage] = useState("");
+
   useEffect(() => {
     getBoardsFromAPI();
   }, []);
@@ -47,12 +49,15 @@ function App() {
 
   const makeNewBoard = (data) => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
+      .post(`http://127.0.0.1:5000/boards`, data)
+      // .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
       .then((response) => {
         getBoardsFromAPI();
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        // console.log("ahhhhhhhh error");
+        // console.log(error.response.data.details);
+        setBoardErrorMessage(error.response.data.details);
       });
   };
 
@@ -125,7 +130,10 @@ function App() {
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>
-          <NewBoardForm createNewBoard={makeNewBoard}></NewBoardForm>
+          <NewBoardForm
+            createNewBoard={makeNewBoard}
+            boardErrorMessage={boardErrorMessage}
+          ></NewBoardForm>
           {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
           {selectedBoard && (
             <section>

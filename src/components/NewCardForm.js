@@ -48,6 +48,7 @@ const NewCardForm = (props) => {
 NewCardForm.propTypes = {
   handleCardSubmission: PropTypes.func.isRequired,
   boardID: PropTypes.number.isRequired,
+  cardErrorMessage: PropTypes.string.isRequired,
 };
 
 export default NewCardForm;
