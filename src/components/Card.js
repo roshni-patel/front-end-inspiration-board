@@ -1,20 +1,22 @@
 import PropTypes from "prop-types";
 import React from "react";
+import axios from "axios";
 
 const Card = (props) => {
-  const card_id = props.card_id;
+  const cardID = props.cardID;
   const message = props.message;
-  const likes_count = props.likes_count;
+  const likesCount = props.likesCount;
+  
   //define addLike function
 
   return (
     <div className="card">
       <h1 className="card-title">{message}</h1>
       <section>
-        <p className="likes">{likes_count}</p>
+        <p className="likes">{likesCount}</p>
         <button
           className="like-button"
-          onClick={() => props.addLike(props.card_id)}
+          onClick={() => props.onUpdateLikes(cardID)}
         >
           +1
         </button>
@@ -27,10 +29,10 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  card_id: PropTypes.number.isRequired,
+  cardID: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
-  likes_count: PropTypes.number.isRequired,
-  onUpdateLike: PropTypes.func,
+  likesCount: PropTypes.number.isRequired,
+  onUpdateLikes: PropTypes.func.isRequired
 };
 
 export default Card;

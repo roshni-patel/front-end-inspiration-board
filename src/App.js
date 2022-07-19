@@ -66,6 +66,7 @@ function App() {
             message: card.message,
             likesCount: card.likes_count,
             boardID: card.board_id,
+            onUpdateLikes: addLikeToCard()
           };
         });
         setCardsData(cardsFromAPI);
@@ -104,6 +105,21 @@ function App() {
       })
       .catch((error) => {
         console.log("error getting cards from board");
+      });
+  };
+
+  const addLikeToCard = (cardID) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_URL}cards/${cardID}/like`,
+        cardID
+      )
+      .then((response) => {
+        // STUCK ON WHAT TO ADD HERE
+        console.log('successfully added like to card')
+      })
+      .catch((error) => {
+        console.log('error adding like to card')
       });
   };
 
