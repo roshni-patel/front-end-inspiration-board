@@ -13,7 +13,6 @@ const CardList = (props) => {
           boardID={card.board_id}
           message={card.message}
           likesCount={card.likesCount}
-          onUpdateLikes={props.onUpdateLikes}
         />
       );
     });
@@ -27,8 +26,7 @@ CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   // cards: PropTypes.array.isRequired,
   // addLike: PropTypes.func.isRequired,
-  boardID: PropTypes.number.isRequired,
-  onUpdateLikes: PropTypes.func.isRequired
+  boardID: PropTypes.number.isRequired
 };
 
 export default CardList;

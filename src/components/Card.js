@@ -8,6 +8,20 @@ const Card = (props) => {
   const likesCount = props.likesCount;
   
   //define addLike function
+  const addLikeToCard = (cardID) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_URL}cards/${cardID}/like`,
+        cardID
+      )
+      .then((response) => {
+        // STUCK ON WHAT TO ADD HERE
+        console.log('successfully added like to card')
+      })
+      .catch((error) => {
+        console.log('error adding like to card')
+      });
+  };
 
   return (
     <div className="card">
@@ -16,7 +30,7 @@ const Card = (props) => {
         <p className="likes">{likesCount}</p>
         <button
           className="like-button"
-          onClick={() => props.onUpdateLikes(cardID)}
+          onClick={() => addLikeToCard(cardID)}
         >
           +1
         </button>
@@ -31,8 +45,7 @@ const Card = (props) => {
 Card.propTypes = {
   cardID: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
-  likesCount: PropTypes.number.isRequired,
-  onUpdateLikes: PropTypes.func.isRequired
+  likesCount: PropTypes.number.isRequired
 };
 
 export default Card;

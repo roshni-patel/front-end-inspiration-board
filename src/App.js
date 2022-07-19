@@ -71,7 +71,7 @@ function App() {
         setCardsData(cardsFromAPI);
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        console.log("error getting cards from API");
       });
   };
 
@@ -104,21 +104,6 @@ function App() {
       })
       .catch((error) => {
         console.log("error getting cards from board");
-      });
-  };
-
-  const addLikeToCard = (cardID) => {
-    axios
-      .put(
-        `${process.env.REACT_APP_BACKEND_URL}cards/${cardID}/like`,
-        cardID
-      )
-      .then((response) => {
-        // STUCK ON WHAT TO ADD HERE
-        console.log('successfully added like to card')
-      })
-      .catch((error) => {
-        console.log('error adding like to card')
       });
   };
 
@@ -157,7 +142,7 @@ function App() {
         <h1 className="card-box-header">Card Box Placeholder</h1>
         {/* DISPLAYS SELECTED BOARD CARDS: only executes if selectedBoard is true */}
         {selectedBoard && (
-          <CardList boardID={selectedBoard} cards={cardsData} onUpdateLikes={addLikeToCard}></CardList>
+          <CardList boardID={selectedBoard} cards={cardsData}></CardList>
         )}
         {/* <CardList></CardList> */}
       </section>
