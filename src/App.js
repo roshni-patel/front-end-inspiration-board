@@ -11,8 +11,7 @@ function App() {
   const [boardsData, setBoardsData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
-  const [isBoardFormVisible, setBoardFormVisivility] = useState(true);
-
+ 
   useEffect(() => {
     getBoardsFromAPI();
   }, []);
@@ -126,7 +125,6 @@ function App() {
           <h1>Create A Board</h1>
           <NewBoardForm
             createNewBoard={makeNewBoard}
-            // isBoardFormVisible={isBoardFormVisible}
           ></NewBoardForm>
           {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
           {selectedBoard && (
