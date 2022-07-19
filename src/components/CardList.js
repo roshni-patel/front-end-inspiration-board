@@ -12,7 +12,8 @@ const CardList = (props) => {
           cardID={card.card_id}
           boardID={card.board_id}
           message={card.message}
-          likesCount={card.likesCount}
+          likesCount={card.likes_count}
+          deleteCardCallback={props.deleteCardCallback}
         />
       );
     });
@@ -26,7 +27,9 @@ CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   // cards: PropTypes.array.isRequired,
   // addLike: PropTypes.func.isRequired,
-  boardID: PropTypes.number.isRequired
+  boardID: PropTypes.number.isRequired,
+  onUpdateLike: PropTypes.func,
+  deleteCardCallback: PropTypes.func.isRequired,
 };
 
 export default CardList;
