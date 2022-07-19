@@ -11,7 +11,7 @@ function App() {
   const [boardsData, setBoardsData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
- 
+  const [cardErrorMessage, setCardErrorMessage] = useState("");
   useEffect(() => {
     getBoardsFromAPI();
   }, []);
@@ -88,7 +88,9 @@ function App() {
         getCardsFromAPI(boardID);
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        // console.log("ahhhhhhhh error");
+        // console.log(error.response.data.details);
+        setCardErrorMessage(error.response.data.details);
       });
   };
 
@@ -123,14 +125,15 @@ function App() {
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>
-          <NewBoardForm
-            createNewBoard={makeNewBoard}
-          ></NewBoardForm>
+          <NewBoardForm createNewBoard={makeNewBoard}></NewBoardForm>
           {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
           {selectedBoard && (
             <section>
               <h1>Create A Card</h1>
-              <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>
+              <NewCardForm
+                handleCardSubmission={makeNewCard}
+                cardErrorMessage={cardErrorMessage}
+              ></NewCardForm>
             </section>
           )}
         </section>
