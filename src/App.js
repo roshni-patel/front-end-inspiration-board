@@ -65,8 +65,7 @@ function App() {
             cardID: card.card_id,
             message: card.message,
             likesCount: card.likes_count,
-            boardID: card.board_id,
-            onUpdateLikes: addLikeToCard()
+            boardID: card.board_id
           };
         });
         setCardsData(cardsFromAPI);
@@ -158,7 +157,7 @@ function App() {
         <h1 className="card-box-header">Card Box Placeholder</h1>
         {/* DISPLAYS SELECTED BOARD CARDS: only executes if selectedBoard is true */}
         {selectedBoard && (
-          <CardList boardID={selectedBoard} cards={cardsData}></CardList>
+          <CardList boardID={selectedBoard} cards={cardsData} onUpdateLikes={addLikeToCard}></CardList>
         )}
         {/* <CardList></CardList> */}
       </section>
