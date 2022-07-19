@@ -59,24 +59,24 @@ function App() {
       });
   };
 
-  const getCardsFromAPI = (boardID) => {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardID}/cards`)
-      .then((response) => {
-        const cardsFromAPI = response.data.map((card) => {
-          return {
-            cardID: card.card_id,
-            message: card.message,
-            likesCount: card.likes_count,
-            boardID: card.board_id
-          };
-        });
-        setCardsData(cardsFromAPI);
-      })
-      .catch((error) => {
-        console.log("error getting cards from API");
-      });
-  };
+  // const getCardsFromAPI = (boardID) => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardID}/cards`)
+  //     .then((response) => {
+  //       const cardsFromAPI = response.data.map((card) => {
+  //         return {
+  //           cardID: card.card_id,
+  //           message: card.message,
+  //           likesCount: card.likes_count,
+  //           boardID: card.board_id,
+  //         };
+  //       });
+  //       setCardsData(cardsFromAPI);
+  //     })
+  //     .catch((error) => {
+  //       console.log("error getting cards from API");
+  //     });
+  // };
 
   const makeNewCard = (cardData) => {
     const boardID = selectedBoard;
@@ -86,7 +86,7 @@ function App() {
         cardData
       )
       .then((response) => {
-        getCardsFromAPI(boardID);
+        getCardsFromBoard(boardID);
       })
       .catch((error) => {
         // console.log(error.response.data.details);
@@ -110,6 +110,9 @@ function App() {
     axios
       .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${id}`)
       .then((response) => {
+        console.log(response.data);
+        const updatedCards = cardsData.filter((card) => card.cardID !== id);
+        setCardsData(updatedCards);
         onUpdateSelectedBoard(boardID);
       })
       .catch((error) => {
@@ -130,22 +133,18 @@ function App() {
       .catch((error) => {
         console.log("error deleting board");
       });
-    }; 
-
+  };
 
   const addLikeToCard = (cardID) => {
     const boardID = selectedBoard;
     axios
-      .put(
-        `${process.env.REACT_APP_BACKEND_URL}/cards/${cardID}/like`,
-        cardID
-      )
+      .put(`${process.env.REACT_APP_BACKEND_URL}/cards/${cardID}/like`, cardID)
       .then((response) => {
         onUpdateSelectedBoard(boardID);
-        console.log('successfully added like to card!')
+        console.log("successfully added like to card!");
       })
       .catch((error) => {
-        console.log('error adding like to card :(')
+        console.log("error adding like to card :(");
       });
   };
 
@@ -198,7 +197,6 @@ function App() {
       <div className="footer"></div>
     </div>
   );
-
-};
+}
 
 export default App;
