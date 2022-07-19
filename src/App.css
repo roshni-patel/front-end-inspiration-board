@@ -137,3 +137,7 @@
 .footer { 
   grid-area: footer; 
 }
+
+p {
+  color: black;
+}

@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 
 const CardList = (props) => {
-  console.log("cardData: ", props.cards);
   let cardComponents = [];
   if (props.cards) {
     cardComponents = props.cards.map((card) => {
+      console.log(`card ${card.card_id}'s like count: ${card.likes_count}`)
       return (
         <Card
           cardID={card.card_id}
@@ -14,6 +14,7 @@ const CardList = (props) => {
           message={card.message}
           likesCount={card.likes_count}
           deleteCardCallback={props.deleteCardCallback}
+          addLikeCallback={props.addLikeCallback}
         />
       );
     });
@@ -28,8 +29,8 @@ CardList.propTypes = {
   // cards: PropTypes.array.isRequired,
   // addLike: PropTypes.func.isRequired,
   boardID: PropTypes.number.isRequired,
-  onUpdateLike: PropTypes.func,
   deleteCardCallback: PropTypes.func.isRequired,
+  addLikeCallback: PropTypes.func.isRequired
 };
 
 export default CardList;

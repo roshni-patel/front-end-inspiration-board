@@ -42,7 +42,7 @@ function App() {
         setBoardsData(boardsFromAPI);
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        console.log("error getting boards from API");
       });
   };
 
@@ -90,7 +90,6 @@ function App() {
         getCardsFromAPI(boardID);
       })
       .catch((error) => {
-        // console.log("ahhhhhhhh error");
         // console.log(error.response.data.details);
         setCardErrorMessage(error.response.data.details);
       });
@@ -116,6 +115,22 @@ function App() {
       })
       .catch((error) => {
         console.log("error deleting card");
+      });
+  };
+
+  const addLikeToCard = (cardID) => {
+    const boardID = selectedBoard;
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND_URL}/cards/${cardID}/like`,
+        cardID
+      )
+      .then((response) => {
+        onUpdateSelectedBoard(boardID);
+        console.log('successfully added like to card!')
+      })
+      .catch((error) => {
+        console.log('error adding like to card :(')
       });
   };
 
@@ -159,6 +174,7 @@ function App() {
             boardID={selectedBoard}
             cards={cardsData}
             deleteCardCallback={deleteCardFromBoard}
+            addLikeCallback={addLikeToCard}
           ></CardList>
         )}
         {/* <CardList></CardList> */}
