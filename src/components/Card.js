@@ -3,7 +3,7 @@ import React from "react";
 
 const Card = (props) => {
   const message = props.message;
-  const likesCount = props.likes_count;
+  const likesCount = props.likesCount;
 
   //define addLike function
 
@@ -11,7 +11,10 @@ const Card = (props) => {
     <div className="card">
       <h1 className="card-title">{message}</h1>
       <section>
-        <p className="likes">{likesCount}</p>
+        <p 
+        className="likes">
+          {likesCount} 💗
+        </p>
         <button
           className="like-button"
           onClick={() => props.addLikeCallback(props.cardID)}

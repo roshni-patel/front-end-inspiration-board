@@ -6,7 +6,6 @@ const CardList = (props) => {
   let cardComponents = [];
   if (props.cards) {
     cardComponents = props.cards.map((card) => {
-      console.log(`card ${card.card_id}'s like count: ${card.likes_count}`)
       return (
         <Card
           cardID={card.card_id}
