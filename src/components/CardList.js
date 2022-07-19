@@ -13,6 +13,7 @@ const CardList = (props) => {
           boardID={card.board_id}
           message={card.message}
           likesCount={card.likes_count}
+          deleteCardCallback={props.deleteCardCallback}
         />
       );
     });
@@ -28,6 +29,7 @@ CardList.propTypes = {
   // addLike: PropTypes.func.isRequired,
   boardID: PropTypes.number.isRequired,
   onUpdateLike: PropTypes.func,
+  deleteCardCallback: PropTypes.func.isRequired,
 };
 
 export default CardList;

@@ -11,7 +11,7 @@ function App() {
   const [boardsData, setBoardsData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
- 
+
   useEffect(() => {
     getBoardsFromAPI();
   }, []);
@@ -35,7 +35,6 @@ function App() {
             boardID: board.id,
             title: board.title,
             owner: board.owner,
-            // isSelected:false
           };
         });
         setBoardsData(boardsFromAPI);
@@ -76,14 +75,12 @@ function App() {
   };
 
   const makeNewCard = (cardData) => {
-    // const boardID = cardData.boardID;
     const boardID = selectedBoard;
-
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}boards/${boardID}/cards`,
         cardData
-      ) // board = owner_id of selectedBoard
+      )
       .then((response) => {
         getCardsFromAPI(boardID);
       })
@@ -96,16 +93,24 @@ function App() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${id}/cards`)
       .then((response) => {
-        console.log(response.data);
         setCardsData(response.data);
-        console.log(cardsData);
       })
       .catch((error) => {
         console.log("error getting cards from board");
       });
   };
 
-  // {boardSelect.id} ---> displays --> ? {boardSelect.title} "- " {boardSelect.owner} : ""
+  const deleteCardFromBoard = (id) => {
+    const boardID = selectedBoard;
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/cards/${id}`)
+      .then((response) => {
+        onUpdateSelectedBoard(boardID);
+      })
+      .catch((error) => {
+        console.log("error deleting card");
+      });
+  };
 
   return (
     <div className="App">
@@ -123,9 +128,7 @@ function App() {
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>
-          <NewBoardForm
-            createNewBoard={makeNewBoard}
-          ></NewBoardForm>
+          <NewBoardForm createNewBoard={makeNewBoard}></NewBoardForm>
           {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
           {selectedBoard && (
             <section>
@@ -139,7 +142,11 @@ function App() {
         <h1 className="card-box-header">Card Box Placeholder</h1>
         {/* DISPLAYS SELECTED BOARD CARDS: only executes if selectedBoard is true */}
         {selectedBoard && (
-          <CardList boardID={selectedBoard} cards={cardsData}></CardList>
+          <CardList
+            boardID={selectedBoard}
+            cards={cardsData}
+            deleteCardCallback={deleteCardFromBoard}
+          ></CardList>
         )}
         {/* <CardList></CardList> */}
       </section>
