@@ -118,6 +118,21 @@ function App() {
       });
   };
 
+  const deleteBoard = (id) => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/boards/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        const updatedBoards = boardsData.filter(
+          (board) => board.boardID !== id
+        );
+        setBoardsData(updatedBoards);
+      })
+      .catch((error) => {
+        console.log("error deleting board");
+      });
+  };
+
   return (
     <div className="App">
       <section className="header">
@@ -131,6 +146,7 @@ function App() {
           boardsData={boardsData}
           getBoardsFromAPI={getBoardsFromAPI}
           onUpdateSelectedBoard={onUpdateSelectedBoard}
+          deleteBoard={deleteBoard}
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>

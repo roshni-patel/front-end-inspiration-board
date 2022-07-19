@@ -15,6 +15,7 @@ const Board = (props) => {
   return (
     <div className="board">
       <h1 className="board-title">{title}</h1>
+      <button onClick={() => props.deleteBoard(boardID)}>Delete Board</button>
       {/* <CardList
         boardID={boardID}
         // cards={props}

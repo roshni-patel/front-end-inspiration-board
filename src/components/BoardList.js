@@ -18,6 +18,7 @@ const BoardList = (props) => {
           isSelected={board.isSelected}
           onUpdateSelectedBoard={props.onUpdateSelectedBoard}
           getBoardsFromAPI={props.getBoardsFromAPI}
+          deleteBoard={props.deleteBoard}
         ></Board>
         <button
           className="select-board"
