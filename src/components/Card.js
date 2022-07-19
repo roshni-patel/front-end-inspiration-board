@@ -2,9 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Card = (props) => {
-  const cardID = props.card_id;
   const message = props.message;
-  const likesCount = props.likes_count;
+  const likesCount = props.likesCount;
 
   //define addLike function
 
@@ -12,10 +11,13 @@ const Card = (props) => {
     <div className="card">
       <h1 className="card-title">{message}</h1>
       <section>
-        <p className="likes">{likesCount}</p>
+        <p 
+        className="likes">
+          {likesCount} 💗
+        </p>
         <button
           className="like-button"
-          onClick={() => props.addLike(props.cardID)}
+          onClick={() => props.addLikeCallback(props.cardID)}
         >
           +1
         </button>
@@ -34,8 +36,8 @@ Card.propTypes = {
   cardID: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
   likesCount: PropTypes.number.isRequired,
-  onUpdateLike: PropTypes.func,
   deleteCardCallback: PropTypes.func.isRequired,
+  addLikeCallback: PropTypes.func.isRequired
 };
 
 export default Card;
