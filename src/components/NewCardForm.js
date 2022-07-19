@@ -20,6 +20,7 @@ const NewCardForm = (props) => {
 
   const submitForm = (event) => {
     event.preventDefault();
+    setCardData(defaultCard);
     props.handleCardSubmission(cardData);
   };
 
