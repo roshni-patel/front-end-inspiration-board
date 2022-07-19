@@ -11,6 +11,11 @@ function App() {
   const [boardsData, setBoardsData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
+<<<<<<< HEAD
+=======
+  const [cardErrorMessage, setCardErrorMessage] = useState("");
+  const [boardErrorMessage, setBoardErrorMessage] = useState("");
+>>>>>>> 5b22ee560dc656d2cf70f41f2d545bfa63c8c22b
 
   useEffect(() => {
     getBoardsFromAPI();
@@ -46,12 +51,15 @@ function App() {
 
   const makeNewBoard = (data) => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
+      .post(`http://127.0.0.1:5000/boards`, data)
+      // .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
       .then((response) => {
         getBoardsFromAPI();
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        // console.log("ahhhhhhhh error");
+        // console.log(error.response.data.details);
+        setBoardErrorMessage(error.response.data.details);
       });
   };
 
@@ -85,7 +93,9 @@ function App() {
         getCardsFromAPI(boardID);
       })
       .catch((error) => {
-        console.log("ahhhhhhhh error");
+        // console.log("ahhhhhhhh error");
+        // console.log(error.response.data.details);
+        setCardErrorMessage(error.response.data.details);
       });
   };
 
@@ -128,12 +138,22 @@ function App() {
         ></BoardList>
         <section className="board-forms">
           <h1>Create A Board</h1>
+<<<<<<< HEAD
           <NewBoardForm createNewBoard={makeNewBoard}></NewBoardForm>
+=======
+          <NewBoardForm
+            createNewBoard={makeNewBoard}
+            boardErrorMessage={boardErrorMessage}
+          ></NewBoardForm>
+>>>>>>> 5b22ee560dc656d2cf70f41f2d545bfa63c8c22b
           {/* DISPLAYS CARD FORM: only executes if selectedBoard is true */}
           {selectedBoard && (
             <section>
               <h1>Create A Card</h1>
-              <NewCardForm handleCardSubmission={makeNewCard}></NewCardForm>
+              <NewCardForm
+                handleCardSubmission={makeNewCard}
+                cardErrorMessage={cardErrorMessage}
+              ></NewCardForm>
             </section>
           )}
         </section>
