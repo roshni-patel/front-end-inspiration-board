@@ -48,8 +48,7 @@ function App() {
 
   const makeNewBoard = (data) => {
     axios
-      .post(`http://127.0.0.1:5000/boards`, data)
-      // .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/boards`, data)
       .then((response) => {
         getBoardsFromAPI();
       })
