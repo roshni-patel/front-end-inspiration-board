@@ -3,7 +3,6 @@ import React from "react";
 import CardList from "./CardList.js";
 import { useState } from "react";
 import axios from "axios";
-import "./App2.css";
 import NewCardForm from "./NewCardForm.js";
 
 const Board = (props) => {
@@ -73,7 +72,7 @@ const Board = (props) => {
           addLikeCallback={addLikeToCard}
         ></CardList>
       </section>
-      <section className="card-form">
+      <section className="">
         <h1>Create A Card</h1>
         <NewCardForm
           handleCardSubmission={makeNewCard}
