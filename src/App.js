@@ -18,11 +18,6 @@ function App() {
     getBoardsFromAPI();
   }, []);
 
-  // useEffect(() => {
-  //   setSelectedBoard(selectedBoard);
-  //   console.log(selectedBoard)
-  // }, [selectedBoard])
-
   const onUpdateSelectedBoard = (id) => {
     setSelectedBoard(id);
     getCardsFromBoard(id);
@@ -53,30 +48,9 @@ function App() {
         getBoardsFromAPI();
       })
       .catch((error) => {
-        // console.log("ahhhhhhhh error");
-        // console.log(error.response.data.details);
         setBoardErrorMessage(error.response.data.details);
       });
   };
-
-  // const getCardsFromAPI = (boardID) => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_BACKEND_URL}/boards/${boardID}/cards`)
-  //     .then((response) => {
-  //       const cardsFromAPI = response.data.map((card) => {
-  //         return {
-  //           cardID: card.card_id,
-  //           message: card.message,
-  //           likesCount: card.likes_count,
-  //           boardID: card.board_id,
-  //         };
-  //       });
-  //       setCardsData(cardsFromAPI);
-  //     })
-  //     .catch((error) => {
-  //       console.log("error getting cards from API");
-  //     });
-  // };
 
   const makeNewCard = (cardData) => {
     const boardID = selectedBoard;
@@ -89,7 +63,6 @@ function App() {
         getCardsFromBoard(boardID);
       })
       .catch((error) => {
-        // console.log(error.response.data.details);
         setCardErrorMessage(error.response.data.details);
       });
   };
@@ -160,8 +133,6 @@ function App() {
     const sortedCards = [...cardsData].sort((card1, card2) => {
       return card1.card_id > card2.card_id ? 1 : -1;
     });
-
-    // console.log(sortedCards);
     setCardsData(sortedCards);
   };
 
@@ -217,7 +188,6 @@ function App() {
             handleSortByUpvotes={handleSortByUpvotes}
           ></CardList>
         )}
-        {/* <CardList></CardList> */}
       </section>
       <div className="footer"></div>
     </div>

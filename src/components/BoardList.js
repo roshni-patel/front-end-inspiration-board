@@ -11,6 +11,12 @@ const BoardList = (props) => {
   const boardComponents = props.boardsData.map((board) => {
     return (
       <li key={board.boardID}>
+        <button
+          className="select-board"
+          onClick={() => onBoardTitleSelect(board.boardID)}
+        >
+          {board.title}
+        </button>
         <Board
           boardID={board.boardID}
           title={board.title}
@@ -20,15 +26,6 @@ const BoardList = (props) => {
           getBoardsFromAPI={props.getBoardsFromAPI}
           deleteBoard={props.deleteBoard}
         ></Board>
-        <button
-          className="select-board"
-          // onClick={() => (board.isSelected = !board.isSelected)}
-          // onClick={() => onBoardTitleSelect(board)}
-          onClick={() => onBoardTitleSelect(board.boardID)}
-        >
-          {board.title}
-          {/* {console.log(board.isSelected)} */}
-        </button>
       </li>
     );
   });
