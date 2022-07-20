@@ -148,6 +148,31 @@ function App() {
       });
   };
 
+  const handleSortAlphabetically = () => {
+    const sortedCards = [...cardsData].sort((card1, card2) => {
+      return card1.message > card2.message ? 1 : -1;
+    });
+
+    setCardsData(sortedCards);
+  };
+
+  const handleSortById = () => {
+    const sortedCards = [...cardsData].sort((card1, card2) => {
+      return card1.card_id > card2.card_id ? 1 : -1;
+    });
+
+    // console.log(sortedCards);
+    setCardsData(sortedCards);
+  };
+
+  const handleSortByUpvotes = () => {
+    const sortedCards = [...cardsData].sort((card1, card2) => {
+      return card1.likes_count < card2.likes_count ? 1 : -1;
+    });
+
+    setCardsData(sortedCards);
+  };
+
   return (
     <div className="App">
       <section className="header">
@@ -190,6 +215,9 @@ function App() {
             cards={cardsData}
             deleteCardCallback={deleteCardFromBoard}
             addLikeCallback={addLikeToCard}
+            handleSortAlphabetically={handleSortAlphabetically}
+            handleSortById={handleSortById}
+            handleSortByUpvotes={handleSortByUpvotes}
           ></CardList>
         )}
         {/* <CardList></CardList> */}
