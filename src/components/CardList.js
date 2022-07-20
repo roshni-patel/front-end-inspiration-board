@@ -21,13 +21,15 @@ const CardList = (props) => {
 
   // return <div className="card-box">{cardComponents}</div>;
   return (
-    <div className="card-list">
+    <div className="card-list-header">
       <button onClick={props.handleSortAlphabetically}>
         Sort Alphabetically
       </button>
       <button onClick={props.handleSortById}>Sort By ID</button>
       <button onClick={props.handleSortByUpvotes}>Sort By Upvotes</button>
+      <div className="card-list">
       {cardComponents}
+      </div>
     </div>
   );
 };
