@@ -57,6 +57,32 @@ const Board = (props) => {
       });
   };
 
+  //sort
+  const handleSortAlphabetically = () => {
+    const sortedCards = [...cards].sort((card1, card2) => {
+      return card1.message > card2.message ? 1 : -1;
+    });
+
+    setCardsCallBack(sortedCards);
+  };
+
+  const handleSortById = () => {
+    const sortedCards = [...cards].sort((card1, card2) => {
+      return card1.card_id > card2.card_id ? 1 : -1;
+    });
+
+    // console.log(sortedCards);
+    setCardsCallBack(sortedCards);
+  };
+
+  const handleSortByUpvotes = () => {
+    const sortedCards = [...cards].sort((card1, card2) => {
+      return card1.likes_count < card2.likes_count ? 1 : -1;
+    });
+
+    setCardsCallBack(sortedCards);
+  };
+
   return (
     <div>
       {/* change this so when button is clicked title = "" */}
@@ -70,6 +96,10 @@ const Board = (props) => {
           cards={cards}
           deleteCardCallback={deleteCardFromBoard}
           addLikeCallback={addLikeToCard}
+          //sort
+          handleSortAlphabetically={handleSortAlphabetically}
+          handleSortById={handleSortById}
+          handleSortByUpvotes={handleSortByUpvotes}
         ></CardList>
       </section>
       <section className="">
