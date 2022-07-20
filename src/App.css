@@ -33,7 +33,10 @@ Yellow Orange - #f89822
     */
 }
 
-button {
+
+
+
+button.green-button {
   margin: 2px;
   padding: 5px;
   border-color: #8FC672;
@@ -43,7 +46,16 @@ button {
   font-weight: bold;
 }
 
-
+button.delete
+{
+  margin: 2px;
+  padding: 5px;
+  border-color: #d5a0fd;
+  border-radius: 0.5rem;
+  color: #cb70ff;
+  background-color: #f3dcff;
+  font-weight: bold;
+}
 
 .header { 
   grid-area: header;

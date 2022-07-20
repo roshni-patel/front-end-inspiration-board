@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Board from "./Board";
-import { useState } from "react";
 
 const BoardList = (props) => {
   const onBoardTitleSelect = (id) => {
@@ -12,7 +11,7 @@ const BoardList = (props) => {
     return (
       <li key={board.boardID}>
         <button
-          className="select-board"
+          className="green-button"
           onClick={() => onBoardTitleSelect(board.boardID)}
         >
           {board.title}

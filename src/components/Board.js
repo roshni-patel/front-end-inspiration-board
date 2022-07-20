@@ -8,7 +8,12 @@ const Board = (props) => {
 
   return (
     <div className="board">
-      <button onClick={() => props.deleteBoard(boardID)}>Delete Board</button>
+      <button
+        className="delete-board"
+        onClick={() => props.deleteBoard(boardID)}
+      >
+        Delete Board
+      </button>
     </div>
   );
 };

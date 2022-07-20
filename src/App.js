@@ -1,5 +1,4 @@
 import "./App.css";
-import Board from "./components/Board";
 import BoardList from "./components/BoardList";
 import CardList from "./components/CardList";
 import NewBoardForm from "./components/NewBoardForm";

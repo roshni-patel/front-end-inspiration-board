@@ -19,25 +19,24 @@ const CardList = (props) => {
     });
   }
 
-  // return <div className="card-box">{cardComponents}</div>;
   return (
     <div className="card-list-header">
-      <button onClick={props.handleSortAlphabetically}>
+      <button className="green-button" onClick={props.handleSortAlphabetically}>
         Sort Alphabetically
       </button>
-      <button onClick={props.handleSortById}>Sort By ID</button>
-      <button onClick={props.handleSortByUpvotes}>Sort By Upvotes</button>
-      <div className="card-list">
-      {cardComponents}
-      </div>
+      <button className="green-button" onClick={props.handleSortById}>
+        Sort By ID
+      </button>
+      <button className="green-button" onClick={props.handleSortByUpvotes}>
+        Sort By Upvotes
+      </button>
+      <div className="card-list">{cardComponents}</div>
     </div>
   );
 };
 
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
-  // cards: PropTypes.array.isRequired,
-  // addLike: PropTypes.func.isRequired,
   boardID: PropTypes.number.isRequired,
   deleteCardCallback: PropTypes.func.isRequired,
   addLikeCallback: PropTypes.func.isRequired,
